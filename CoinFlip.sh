@@ -1,4 +1,4 @@
 #!/bin/bash
 
 
-echo "Welcome to amster branch"
+[ $((RANDOM%2)) -eq 1 ] && echo HEADS || echo TAILS
