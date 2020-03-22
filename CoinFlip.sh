@@ -1,7 +1,27 @@
 #!/bin/bash
 
 
-for i in {1..10}
+headCount=0
+tailCount=0
+while [ $headCount -lt 21 -a $tailCount -lt 21 ]
 do
-	[ $((RANDOM%2)) -eq 1 ] && echo HEADS || echo TAILS
+	r=$((RANDOM%2))
+	if [ $r -eq  1 ]
+	then
+		headCount=$((headCount+1))
+	else
+		tailCount=$((tailCount+1))
+	fi
 done
+
+if [ $headCount -eq 21 -a $tailCount -ne 21 ]
+then
+	echo "Heads Won by" $((headCount-tailCount)) "point"
+elif [ $tailCount -eq 21 -a $headCount -ne 21 ]
+then
+	echo "Tails Won by" $((tailCount-headCount)) "point"
+elif [ $headCount -eq 21 -a $tailcount -eq 2 ]
+then
+	echo "Its a Tie"
+fi
+
