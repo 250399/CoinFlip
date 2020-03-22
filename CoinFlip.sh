@@ -33,21 +33,6 @@ simulator () {
 		simulator
 }
 
-checkWinner () {
-
-	if [ $headCount -eq 21 -a $tailCount -ne 21 ]
-	then
-		echo "Heads Won by" $((headCount-tailCount)) "point"
-	elif [ $tailCount -eq 21 -a $headCount -ne 21 ]
-	then
-		echo "Tails Won by" $((tailCount-headCount)) "point"
-	elif [ $headCount -eq 21 -a $tailCount -eq 21 ]
-	then
-		echo "Its a Tie"
-		simulator
-	fi
-
-}
 
 headCount=0
 tailCount=0
@@ -55,5 +40,9 @@ flag=0
 simulator
 echo ${arr[0]} "won by" ${arr[1]} "points"
 [[ "${arr[0]}" == "Head" ]] && tailCount=`expr $tailCount + ${arr[1]}` || headCount=`expr $headCount + ${arr[1]}`
-checkWinner
+if [ $headCount -eq $tailCount ]
+then
+	echo Its Tie
+	simulator
+fi
 echo "Final Winner is "${arr[2]}
